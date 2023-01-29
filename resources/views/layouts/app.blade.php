@@ -32,6 +32,8 @@
     </main>
 </div>
 
+<script src="{{ asset('js/cart.js') }}"></script>
+<script src="{{ asset('js/checkout.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
