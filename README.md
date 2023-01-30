@@ -42,6 +42,14 @@ STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
 ```
 
+#### Install composer and npm dependencies
+```sh
+cd laravel-stripe-checkout
+composer install
+npm i
+npm run dev
+```
+
 #### Run migration and seeder
 ```sh
 php artisan migrate --seed
