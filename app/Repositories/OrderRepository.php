@@ -16,6 +16,7 @@ class OrderRepository
 
     public const ORDER_DUE = 'due';
     public const ORDER_PAID = 'paid';
+    public const ORDER_CANCELLED = 'cancel';
     public const ORDER_PARTIALLY_PAID = 'partially_paid';
 
     public function __construct()

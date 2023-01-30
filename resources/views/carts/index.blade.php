@@ -17,14 +17,14 @@
                             <div class="shadow-lg bg-white p-4 md:ml-4">
                                 <div id="cart-summary"></div>
                             </div>
+                            <div class="mt-8 text-right">
+                                <p>
+                                    <a class="bg-slate-600 px-5 py-3 rounded text-white" href="{{ route('checkout') }}">
+                                        Checkout
+                                    </a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-8 text-right">
-                        <p>
-                            <a class="bg-slate-600 px-5 py-3 rounded text-white" href="{{ route('checkout') }}">
-                                Checkout
-                            </a>
-                        </p>
                     </div>
                 </div>
             </div>

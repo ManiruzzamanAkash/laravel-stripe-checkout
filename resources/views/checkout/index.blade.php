@@ -66,6 +66,11 @@
 
             const submitPayment = () => {
                 submitButton.disabled = true;
+                if(getCartItems().length === 0) {
+                    alert('Please add a product to cart first.');
+                    return;
+                }
+
                 const formData = new FormData(paymentForm);
                 formData.append('products', JSON.stringify(getCartItems()));
 

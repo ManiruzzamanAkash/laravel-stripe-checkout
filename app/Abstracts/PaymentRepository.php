@@ -12,6 +12,11 @@ abstract class PaymentRepository implements PaymentInterface
     protected Order $order;
     protected array $items;
 
+    public function __construct()
+    {
+        $this->items = [];
+    }
+
     public function getOrder(): Order
     {
         return $this->order;

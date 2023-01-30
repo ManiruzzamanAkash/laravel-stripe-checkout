@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('session_id')->nullable();
             $table->decimal('total', 10, 2)->default(0);
-            $table->enum('status', ['due', 'paid', 'partially_paid'])->default('due');
+            $table->enum('status', ['due', 'paid', 'partially_paid', 'cancel'])->default('due');
             $table->timestamps();
         });
     }

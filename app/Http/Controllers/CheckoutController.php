@@ -9,7 +9,6 @@ use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -97,6 +96,27 @@ class CheckoutController extends Controller
         }
 
         return view('checkout.success', [
+            'order' => $order
+        ]);
+    }
+
+    public function cancel(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|numeric'
+        ]);
+
+        $order = $this->orderRepository
+            ->setOrder(intval($request->order_id))
+            ->getOrder();
+
+        if (!$order) {
+            abort(Response::HTTP_NOT_FOUND, 'Sorry, your order does not exist !');
+        }
+
+        $this->orderRepository->changeOrderStatus(OrderRepository::ORDER_CANCELLED);
+
+        return view('checkout.cancel', [
             'order' => $order
         ]);
     }
