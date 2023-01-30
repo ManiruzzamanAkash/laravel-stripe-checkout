@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
 Route::get('/carts', [CartController::class, 'index'])->name('carts');
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,5 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('payment-success', [PaymentController::class, 'success']);
+Route::get('payment-cancel', [PaymentController::class, 'cancel']);
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout-success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 
 require __DIR__.'/auth.php';

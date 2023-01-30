@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->enum('payment_method', ['cash', 'online']);
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('session_id')->nullable();
-            $table->decimal('total', 10, 2)->default(0);
-            $table->enum('status', ['due', 'paid', 'partially_paid'])->default('due');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger('quantity')->default(1);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_items');
     }
 };

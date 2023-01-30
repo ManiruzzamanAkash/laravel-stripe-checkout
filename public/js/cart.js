@@ -54,6 +54,10 @@ function addToCart(product) {
     initCarts();
 }
 
+function clearCartItems() {
+    localStorage.removeItem(cartAddKey);
+}
+
 function setCartInLocalStorage(products) {
     localStorage.setItem(cartAddKey, JSON.stringify(products));
     initCarts();

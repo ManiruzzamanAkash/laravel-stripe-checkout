@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
