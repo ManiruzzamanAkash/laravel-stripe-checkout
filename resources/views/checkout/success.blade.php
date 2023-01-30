@@ -23,6 +23,11 @@
                             {{ ucfirst($order->status) }}
                         </span>
                     @endif
+                    @if ($order->status === 'due')
+                        <span class="bg-red-500 px-4 py-1 text-white font-bold">
+                            {{ ucfirst($order->status) }}
+                        </span>
+                    @endif
                 </h4>
             </div>
         </div>

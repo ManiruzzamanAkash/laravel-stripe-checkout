@@ -45,7 +45,7 @@ class CheckoutController extends Controller
                 throw new Exception('Order does not created successfully !', Response::HTTP_INTERNAL_SERVER_ERROR);
             }
 
-            $redirectedUrl = route('checkout.success');
+            $redirectedUrl = route('checkout.success') . '?order_id=' . $order->id;
             switch ($request->payment_method) {
                 case 'online':
                     $redirectedUrl = $this->stripePaymentRepository
@@ -88,14 +88,12 @@ class CheckoutController extends Controller
         try {
             if ($order->payment_method === 'online' && $order->session_id === $request->session_id) {
                 $stripeSession = $this->stripePaymentRepository->stripe->checkout->sessions->retrieve($request->session_id);
-                Log::debug($stripeSession);
-                Log::debug($order);
                 if (floatval($stripeSession->amount_total) === floatval($order->total)) {
                     $this->orderRepository->changeOrderStatus(OrderRepository::ORDER_PAID);
                 }
             }
         } catch (\Stripe\Exception\ApiErrorException $exception) {
-            abort(Response::HTTP_BAD_REQUEST, 'Invalid session or session has expired.');
+            abort(Response::HTTP_BAD_REQUEST, $exception->getMessage());
         }
 
         return view('checkout.success', [
